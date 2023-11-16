@@ -1,0 +1,14 @@
+{
+  "name": "333c73e10da2f985",
+  "main": "333c73e10da2f985@4.js",
+  "version": "4.0.0",
+  "homepage": "https://observablehq.com/d/333c73e10da2f985",
+  "author": {
+    "name": "WEI-CHE HSU's Workspace",
+    "url": "https://observablehq.com/@wei-che-hsu-ws"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4 - 5"
+  }
+}
