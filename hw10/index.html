@@ -1,195 +1,295 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant-TW">
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- D3, jquery -->
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" charset="utf-8"></script>
+    <!-- D3, jquery -->
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      charset="utf-8"
+    ></script>
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 
-<title>作品集 Portfolio</title>
-<!-- https://alexlenail.me/NN-SVG/about.html -->
-<link rel="icon" href="../hw00/favicon.svg"/>
-<style type="text/css">
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap');
+    <title>作品集 Portfolio</title>
+    <!-- https://alexlenail.me/NN-SVG/about.html -->
+    <link rel="icon" href="../hw00/favicon.svg" />
+    <style type="text/css">
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap");
 
-  table {
-  border-collapse: collapse;
-  border: 2px solid white; /* rgba(217,140,144,1) */
-  font-size:  12pt;
-  margin-left: auto;
-  margin-right: auto;
-  }
+      table {
+        border-collapse: collapse;
+        border: 2px solid white; /* rgba(217,140,144,1) */
+        font-size: 12pt;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-  td,
-  th {
-  border: 1px solid white;
-  padding: 2px 8px;
-  }
+      td,
+      th {
+        border: 1px solid white;
+        padding: 2px 8px;
+      }
 
-  .flipswitch
-  {
-      position: relative;
-      background: white;
-      width: 120px;
-      height: 20px;
-      -webkit-appearance: initial;
-      border-radius: 3px;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      outline:none;
-      font-size: 14px;
-      font-family: Trebuchet, Arial, sans-serif;
-      font-weight: bold;
-      cursor:pointer;
-      border:1px solid #ddd;
-  }
-  .flipswitch:after
-  {
-      position:absolute;
-      top:5%;
-      display:block; 
-      line-height:16px;
-      width:45%;
-      height:90%;
-      background:#fff;
-      box-sizing:border-box;
-      text-align:center;
-      transition: all 0.3s ease-in 0s; 
-      color:rgba(159,53,58,1);
-      border:#888 1px solid;
-      border-radius:3px;
-  }
-  .flipswitch:after
-  {
-      left:2%;
-      content: "未完成";
-  }
-  .flipswitch:checked:after
-  {
-      left:53%;
-      content: "完成";
-  }
+      .flipswitch {
+        position: relative;
+        background: white;
+        width: 120px;
+        height: 20px;
+        -webkit-appearance: initial;
+        border-radius: 3px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+        font-size: 14px;
+        font-family: Trebuchet, Arial, sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        border: 1px solid #ddd;
+      }
+      .flipswitch:after {
+        position: absolute;
+        top: 5%;
+        display: block;
+        line-height: 16px;
+        width: 45%;
+        height: 90%;
+        background: #fff;
+        box-sizing: border-box;
+        text-align: center;
+        transition: all 0.3s ease-in 0s;
+        color: rgba(159, 53, 58, 1);
+        border: #888 1px solid;
+        border-radius: 3px;
+      }
+      .flipswitch:after {
+        left: 2%;
+        content: "未完成";
+      }
+      .flipswitch:checked:after {
+        left: 53%;
+        content: "完成";
+      }
 
-  body {
-    background-color: rgb(106, 76, 156); /* #6A4C9C */
-    color: rgb(106, 76, 156);
-    font-family: 'Noto Serif JP', serif;
-  }
+      body {
+        background-color: rgb(106, 76, 156); /* #6A4C9C */
+        color: rgb(106, 76, 156);
+        font-family: "Noto Serif JP", serif;
+      }
 
-  .container-fluid {
-    width:  90%;
-  }
+      .container-fluid {
+        width: 90%;
+      }
 
-  .hw12 {
-    border: 1px solid rgb(159, 53, 58);
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
+      .hw12 {
+        border: 1px solid rgb(159, 53, 58);
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
 
-  .twenty {
-    border: 1px solid #f9eced;
-    color: #f9eced;
-    padding: 8px;
-    font-size: 16pt;
-  }
+      .twenty {
+        border: 1px solid #f9eced;
+        color: #f9eced;
+        padding: 8px;
+        font-size: 16pt;
+      }
 
-  .twenty:hover {
-      box-shadow: 0 0 5px 3px #f9eced;
-      color: cyan; 
-      text-shadow: 0 0 6px #FFFFFF, 0 0 6px #000000;
-  }
+      .twenty:hover {
+        box-shadow: 0 0 5px 3px #f9eced;
+        color: cyan;
+        text-shadow: 0 0 6px #ffffff, 0 0 6px #000000;
+      }
 
-  .github-corner:hover 
-  .octo-arm {
-    animation: octocat-wave 560ms ease-in-out
-  }
-  @keyframes octocat-wave {
-    0%,100% {
-      transform:rotate(0)
-    }
-    20%,60% {
-      transform:rotate(-25deg)
-    }
-    40%,80% {
-      transform:rotate(10deg)
-    }
-  }
-  @media (max-width:500px) {
-    .github-corner:hover 
-    .octo-arm {
-      animation:none
-    }
+      .github-corner:hover .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+      }
+      @keyframes octocat-wave {
+        0%,
+        100% {
+          transform: rotate(0);
+        }
+        20%,
+        60% {
+          transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+          transform: rotate(10deg);
+        }
+      }
+      @media (max-width: 500px) {
+        .github-corner:hover .octo-arm {
+          animation: none;
+        }
 
-    .github-corner 
-    .octo-arm {
-      animation: octocat-wave 560ms ease-in-out
-    }
-  }
+        .github-corner .octo-arm {
+          animation: octocat-wave 560ms ease-in-out;
+        }
+      }
 
-  /* 波浪 */
-  a {
-    color:yellow;
-    text-decoration: none; 
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='%23fff' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E") repeat-x 0 100%; 
-    background-size:20px auto; 
-    animation: waveMove 1s infinite linear;
-  }
+      /* 波浪 */
+      a {
+        color: yellow;
+        text-decoration: none;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='%23fff' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E")
+          repeat-x 0 100%;
+        background-size: 20px auto;
+        animation: waveMove 1s infinite linear;
+      }
 
-  a:hover {
-    color:#f30;
-    text-decoration: none;
-    background: none;
-    animation: none;
-    text-decoration: underline;
-    padding:2px 0;
-  }
-  @keyframes waveMove {
-    from { background-position:0 100%; }
-    to { background-position:20px 100%; }
-  }
-  /* 波浪 */
-</style>
-</head>
-<body>
-<!-- https://alexlenail.me/NN-SVG/about.html -->
-<a href="https://tjhsieh.github.io/c/vis/vis2023f/syllabus/index.html" class="github-corner" aria-label="View source on Github">
-  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#f9eced; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="#f9eced" stroke="#6A4C9C" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="#f9eced" stroke="#6A4C9C" class="octo-body"></path>
-  </svg>
-</a>
+      a:hover {
+        color: #f30;
+        text-decoration: none;
+        background: none;
+        animation: none;
+        text-decoration: underline;
+        padding: 2px 0;
+      }
+      @keyframes waveMove {
+        from {
+          background-position: 0 100%;
+        }
+        to {
+          background-position: 20px 100%;
+        }
+      }
+      /* 波浪 */
+    </style>
+  </head>
+  <body>
+    <!-- https://alexlenail.me/NN-SVG/about.html -->
+    <a
+      href="https://tjhsieh.github.io/c/vis/vis2023f/syllabus/index.html"
+      class="github-corner"
+      aria-label="View source on Github"
+    >
+      <svg
+        width="80"
+        height="80"
+        viewBox="0 0 250 250"
+        style="
+          fill: #f9eced;
+          color: #fff;
+          position: absolute;
+          top: 0;
+          border: 0;
+          right: 0;
+        "
+        aria-hidden="true"
+      >
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+          d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+          fill="#f9eced"
+          stroke="#6A4C9C"
+          style="transform-origin: 130px 106px"
+          class="octo-arm"
+        ></path>
+        <path
+          d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+          fill="#f9eced"
+          stroke="#6A4C9C"
+          class="octo-body"
+        ></path>
+      </svg>
+    </a>
 
-<div class="container-fluid">
+    <div class="container-fluid">
+      <!-- ------------------------------------------------>
+      <div class="row hw12">
+        <div class="col-md-12 twenty">
+          <h1>作業 10</h1>
+        </div>
+      </div>   
+      
+    
 
-  <!-- ------------------------------------------------>
-  <div class="row hw12">
-    <div class="col-md-12 twenty">
-      <h1>作業 10</h1>
-    </div>
-  </div>
+    
 
-  <!-- ------------------------------------------------>
-  <div class="row hw12">
-    <div class="col-md-12 twenty">
-      該次作業程式碼，請放在 https://github.com/<span style="color:red;">你的帳號</span>/vis2023f/hw<span style="color:red;">10</span>/src/ 檔案夾。
-    </div>
-  </div>
+    <!-- ------------------------------------------------>
+      <div class="row hw12">
+        <div class="col-md-12 twenty">
+          <h4><u>李◐◐心得</u></h4>
+          <h5>
+            參觀師大美術館光影走廊，深感藝術之美在於光影的巧妙運用。畫廊光影交錯，營造出獨特氛圍，每一步都是一幅動態畫。藝術家透過投影技巧，將畫作賦予生命，讓觀眾身臨其境。充滿詩意的影片，彷彿走進夢幻般的藝術空間，感受到藝術與現實的奇妙交融，令人陶醉其中。
+          </h5>
+        </div>
+      </div>     
 
-  <!-- ------------------------------------------------>
-  <div class="row hw12">
-    <div class="col-md-12 twenty">
-      心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。
-    </div>
-  </div>
+    <!-- ------------------------------------------------>
+    <div class="row hw12">
+        <div class="col-md-12 twenty">
+          <h4><u>黃◐◐心得</u></h4>
+          <h5>
+            這次的作業是小組作業，我們主要是做主題遊的資料呈現，一開始我是分配到地板那塊牆，主要是用圓餅圖來呈現「使用主題遊是否會讓人感到放鬆」這個問題的答案分佈，最讓我感到意外的是選擇同意的人數還蠻多的。這個作業比較麻煩的地方是要如何才能讓所有牆面呈現統一風格，也許是一開始的分工有錯，導致我們後面來回修改很多次，浪費了很多時間。還好最後載美術館呈現的還可以，不過還是有很多待改進的地方，總而言之是個有趣的體驗。
+          </h5>
+        </div>
+    </div>     
 
-  <!-- ------------------------------------------------>
+    <!-- ------------------------------------------------>
+    <div class="row hw12">
+        <div class="col-md-12 twenty">
+          <h4><u>鄭◐◐心得</u></h4>
+          <h5>
+            這次課程與師大美術館合作，以Unity 3D視覺化為基礎，教學各種觀察者視角的畫作展覽方式，並應用observable轉換不同的數據呈現方式。其中，Unity的方法特別，不僅是以3D的形式呈現，並且有很多套件能使用下載，有趣而且可延伸至多樣形式，為展覽帶來豐富多彩的體驗。
+          </h5>
+        </div>
+    </div>   
+
+     <!-- ------------------------------------------------>
+     <div class="row hw12">
+        <div class="col-md-12 twenty">
+          <h4><u>廖◐◐心得</u></h4>
+          <h5>
+            作業十是小組的作業，很感謝我的組員們都非常carry的完成所有事情，其中，最感謝的組員是沛誼，她在確診發燒的時候主動問我需不需要幫忙，並且替我完成了部分工作。最後在師大美術館看到光影走廊的樣子感覺跟模擬看到的很不一樣，真的有一種沉浸感，也謝謝小組長會定期約大家開會關心進度，辛苦了。
+          </h5>
+        </div>
+    </div>   
+    
+     <!-- ------------------------------------------------>
+     <div class="row hw12">
+        <div class="col-md-12 twenty">
+          <h4><u>劉◐◐心得</u></h4>
+          <h5>
+            將視覺化成圖表投影到光影走廊，透過藝術與數據的結合，創造了一種新型的表達方式。這種創新不僅增加了資料的可視化和理解，而且透過沈浸式的環境強化了訊息的影響力。使得原本枯燥的數據變得生動有趣。這種方式不僅是一種資訊傳遞，更是一場視覺和感官的盛宴，讓人在走廊中體驗數據的魅力。
+          </h5>
+        </div>
+    </div>      
+
+         <!-- ------------------------------------------------>
+         <div class="row hw12">
+            <div class="col-md-12 twenty">
+              <h4><u>楊◐◐心得</u></h4>
+              <h5>
+                光影走廊:
+今天又再次來到師大美術館，但這次不太一樣的是我們要把課堂作業製作的光影走廊呈現在美術館的小空間。我們這組的光影走廊是呈現出主題遊問卷的可視化圖表，當初分工都是個別作業，在現場實際看到結果呈現時覺得還蠻漂亮的，是一個很特別的體驗。
+
+展覽:
+師大美術館這次有個展覽，展覽名稱叫分身術，是將師大美術系歷年來的優秀畢業生作品展出，有些年代久遠的，他們還使用修復技術來讓畫作能夠呈現出當時的風采，別具意義，成功地創造了一個引人入勝的展示空間，也給予了我豐富的心靈體驗。
+              </h5>
+            </div>
+        </div>      
+    
+    <!-- ------------------------------------------------>
+    <div class="row hw12">
+        <div class="col-md-12 twenty">
+          <h4><u>許◐◐心得</u></h4>
+          <h5>
+            在我們進行期末專案的過程中，第一組的團隊成員表現得非常出色。無論是在討論主題時還是在分工合作上，每個組員都展現出極大的盡責精神和奉獻度。我們的團隊不僅在老師提供建議的情況下積極作出調整，以符合老師的期望，更在前前後後經歷了三個版本的修改，堪稱辛勤努力，大家真的辛苦了，你們好棒~~~
+          </h5>
+        </div>
+      </div>     
+
+    <!-- ------------------------------------------------>
+
+     <!-- ------------------------------------------------>
   <div class="row hw12">
     <div class="col-md-12 twenty">
       <table>
@@ -201,75 +301,109 @@
         </tr>
         <tr>
           <td rowspan="7" id="myTotal"></td>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox1"></td>
-          <td id='m1'>2</td>
-          <td>Simple baseline - 描述、描述、描述</td>
+          
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox0" checked></td>
+          <td id='m0'>4</td>
+          <td>12.29 光影走廊完成簡報</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox1" checked></td>
+          <td id='m1'>1</td>
+          <td>組長收齊所有組員，12.29 美術館定位追蹤數據</td>
         </tr>
         <tr>
           <td><input type="checkbox" class="flipswitch" id="myCheckbox2" checked></td>
-          <td id='m2'>6</td>
-          <td>Medium baseline - 描述、描述、描述 </td>
+          <td id='m2'>1</td>
+          <td>組長製作 HW10 作品集網頁 </td>
         </tr>
         <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox3"></td>
-          <td id='m3'>2</td>
-          <td>Strong baseline - 描述、描述、描述 </td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox3" checked></td>
+          <td id='m3'>1</td>
+          <td>光影走廊影片(112.12.29版)，使用Unity模擬器，發佈至 YouTube 360 Video，並放到HW10作品集網頁</td>
+        </tr>      
+        <tr>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox4" checked></td>
+          <td id='m4'>1</td>
+          <td>光影走廊影片(最後修正版)，使用Unity模擬器，發佈至 YouTube 360 Video，並放到HW10作品集網頁 </td>
         </tr>
+        <tr>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox5" checked></td>
+          <td id='m5'>1</td>
+          <td>組長收光影走廊影片(高解析度)(112.12.29版、最後修正版)</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox6" checked></td>
+          <td id='m6'>1</td>
+          <td>組長收光影走廊影片製作素材(Unity 專案檔、Observable 程式碼、照片、素材、錄音檔等)</td>
+        </tr>        
       </table>
     </div>
   </div>
-
+12/29當天得到修改意見後，第17週、第18週，進行後續修改。
   <!-- ------------------------------------------------>
-  <div class="row hw12">
-    <div class="col-md-12 twenty">
-      <video id="video1" style="width:100%;max-width:100%;" controls="">
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-      </video>
+
+    <!-- ------------------------------------------------>
+    <div class="row hw12">
+        <div class="col-md-12 twenty">
+        <h4><u>成果360影片</u></h4>
+        <iframe width="920" height="517" src="https://www.youtube.com/embed/9r0yo-1uliQ" frameborder="0" allowfullscreen></iframe>
+          <!-- <video id="video1" style="width:100%;max-width:100%;" controls="">
+            <source src="./HW08.mp4" type="video/mp4">
+          </video> -->
+        </div>
     </div>
-  </div>
+    <script>
+      $(function () {
+        var f = function () {
+          $(this)
+            .next()
+            .text($(this).is(":checked") ? "做完" : "未做完");
+        };
+        $("input").change(f).trigger("change");
+      });
 
-  <!-- ------------------------------------------------>
+      d3.select("#myCheckbox1").on("change", update);
+      d3.select("#myCheckbox2").on("change", update);
+      d3.select("#myCheckbox3").on("change", update);
+      d3.select("#myCheckbox4").on("change", update);
+      d3.select("#myCheckbox5").on("change", update);
+      d3.select("#myCheckbox6").on("change", update);
+      d3.select("#myCheckbox7").on("change", update);
 
-  <!-- ------------------------------------------------>
+      update();
 
+      function update() {
+        var score = 0;
 
-<script>
-  $(function() {
-    var f = function() {
-      $(this).next().text($(this).is(':checked') ? '做完' : '未做完');
-    };
-    $('input').change(f).trigger('change');
-  });
+        if (d3.select("#myCheckbox1").property("checked")) {
+          score += parseInt(d3.select("#m1").html());
+        }
 
-  d3.select("#myCheckbox1").on("change",update);
-  d3.select("#myCheckbox2").on("change",update);
-  d3.select("#myCheckbox3").on("change",update);
-  d3.select("#myCheckbox4").on("change",update);
-  d3.select("#myCheckbox5").on("change",update);
-  d3.select("#myCheckbox6").on("change",update);
-  d3.select("#myCheckbox7").on("change",update);
+        if (d3.select("#myCheckbox2").property("checked")) {
+          score += parseInt(d3.select("#m2").html());
+        }
 
-  update();
-  
-  function update(){
+        if (d3.select("#myCheckbox3").property("checked")) {
+          score += parseInt(d3.select("#m3").html());
+        }
 
-    var score = 0;
+        if (d3.select("#myCheckbox4").property("checked")) {
+          score += parseInt(d3.select("#m4").html());
+        }
 
-    if (d3.select("#myCheckbox1").property("checked")){
-      score += parseInt(d3.select('#m1').html());
-    }
+        if (d3.select("#myCheckbox5").property("checked")) {
+          score += parseInt(d3.select("#m5").html());
+        }
 
-    if (d3.select("#myCheckbox2").property("checked")){
-      score += parseInt(d3.select('#m2').html());   
-    }
+        if (d3.select("#myCheckbox6").property("checked")) {
+          score += parseInt(d3.select("#m6").html());
+        }
 
-    if (d3.select("#myCheckbox3").property("checked")){
-      score += parseInt(d3.select('#m3').html());   
-    }
-
-    d3.select("#myTotal").html(score);    
-  }
-</script>
-
-</body>
+        if (d3.select("#myCheckbox7").property("checked")) {
+          score += parseInt(d3.select("#m7").html());
+        }
+        d3.select("#myTotal").html(score);
+      }
+    </script>
+  </body>
 </html>
